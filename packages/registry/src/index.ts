@@ -9,7 +9,7 @@ const port: number = 1923;
 
 let components: Component[];
 
-app.use(authMiddleware);
+// app.use(authMiddleware);
 
 app.get('/', async (_req: Request, res: Response) => {
   res.json(components);

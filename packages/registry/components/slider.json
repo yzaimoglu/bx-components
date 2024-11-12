@@ -6,12 +6,12 @@
   "files": {
     "angular": [
       {
-        "path": "ui/slider.comp.ts"
+        "path": "ui/slider/slider.comp.ts"
       }
     ],
     "vue": [
       {
-        "path": "ui/Slider.vue"
+        "path": "ui/slider/Slider.vue"
       }
     ]
   }

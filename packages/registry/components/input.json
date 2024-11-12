@@ -8,12 +8,12 @@
   "files": {
     "angular": [
       {
-        "path": "ui/input.comp.ts"
+        "path": "ui/input/input.comp.ts"
       }
     ],
     "vue": [
       {
-        "path": "ui/input.vue"
+        "path": "ui/input/Input.vue"
       }
     ]
   }
