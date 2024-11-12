@@ -1,6 +1,6 @@
 import express, { Express, Request, Response } from 'express';
 import { ApiResponse, Component } from './types';
-import { getComponents } from './components';
+import { getComponents, getSingleComponent } from './components';
 
 const app: Express = express();
 const port: number = 1923;
@@ -12,6 +12,16 @@ app.get('/', async (_req: Request, res: Response) => {
     components: components,
   };
   
+  res.json(response);
+});
+
+app.get('/:component', async (_req: Request, res: Response) => {
+  const response: Component | undefined = getSingleComponent(components, _req.params["component"]);
+  if(response === undefined) {
+    res.status(404).send();
+    return;
+  }
+
   res.json(response);
 });
 

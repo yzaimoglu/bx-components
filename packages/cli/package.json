@@ -37,6 +37,7 @@
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.1.0",
     "https-proxy-agent": "^6.2.0",
+    "inquirer": "^12.1.0",
     "lodash.template": "^4.5.0",
     "node-fetch": "^3.3.0",
     "ora": "^6.1.2",

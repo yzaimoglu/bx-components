@@ -36,3 +36,7 @@ async function readComponentFiles(directoryPath: string): Promise<Component[]> {
 export const getComponents = async (): Promise<Component[]> => {
   return readComponentFiles("components");
 };
+
+export const getSingleComponent = (components: Component[], name: string): Component | undefined => {
+  return components.find((c) => c.name === name);
+};
