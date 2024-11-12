@@ -88,11 +88,13 @@ export async function createComponent(componentName: string, framework: keyof Fi
   try {
     console.log(`Installing ${componentName}...`);
     const component = await fetchComponent(componentName);
-
+    console.log(componentName);
+    console.log(framework);
+  
     if(component.registryDependencies.length !== 0) {
       console.log(`Installing dependencies...`)
       for(const dependencyName of component.registryDependencies) {
-        createComponent(dependencyName, framework);
+        await createComponent(dependencyName, framework);
       }
       console.log(`Dependencies of ${componentName} installed.`)
     }
@@ -106,6 +108,8 @@ export async function createComponent(componentName: string, framework: keyof Fi
       try {
         const sourcePath = `https://raw.githubusercontent.com/yzaimoglu/bx-components/refs/heads/main/packages/${framework}/src/${file.path}`;
         const destPath = `${standardOutputDirectory}/${file.path}`;
+        console.log(sourcePath);
+        console.log(destPath);
 
         await downloadFile(sourcePath, destPath);
         console.log(`Downloaded ${file.path}`);

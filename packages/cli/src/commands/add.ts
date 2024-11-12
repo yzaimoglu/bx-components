@@ -47,7 +47,7 @@ export const add = new Command()
         }])).framework as keyof Files;
 
       for (const componentName of components) {
-        createComponent(componentName, framework);
+        await createComponent(componentName, framework);
       }
     } catch (error) {
       console.error('Operation cancelled');
