@@ -1,0 +1,20 @@
+{
+  "name": "input",
+  "type": "ui",
+  "dependencies": [],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": {
+    "angular": [
+      {
+        "path": "ui/input.comp.ts"
+      }
+    ],
+    "vue": [
+      {
+        "path": "ui/input.vue"
+      }
+    ]
+  }
+}

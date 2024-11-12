@@ -1,0 +1,20 @@
+{
+  "name": "button",
+  "type": "ui",
+  "dependencies": [],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": {
+    "angular": [
+      {
+        "path": "components/ui/button.comp.ts"
+      }
+    ],
+    "vue": [
+      {
+        "path": "components/ui/Button.vue"
+      }
+    ]
+  }
+}
