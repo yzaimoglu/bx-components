@@ -8,12 +8,12 @@
   "files": {
     "angular": [
       {
-        "path": "components/ui/button.comp.ts"
+        "path": "ui/button.comp.ts"
       }
     ],
     "vue": [
       {
-        "path": "components/ui/Button.vue"
+        "path": "ui/Button.vue"
       }
     ]
   }

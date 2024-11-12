@@ -2,5 +2,5 @@ export const mainPath = "https://raw.githubusercontent.com/yzaimoglu/bx-componen
 export const vuePath = mainPath + "vue/src/";
 export const angularPath = mainPath + "angular/src/";
 
-export const standardOutputDirectory = "src";
+export const standardOutputDirectory = "src/components";
 export const standardComponentsJson = "components.json";

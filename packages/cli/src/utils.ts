@@ -104,7 +104,7 @@ export async function createComponent(componentName: string, framework: keyof Fi
     const files: File[] = component.files[framework as keyof Files];
     for (const file of files) {
       try {
-        const sourcePath = `https://raw.githubusercontent.com/yzaimoglu/bx-components/refs/heads/main/packages/${framework}/src/${file.path}`;
+        const sourcePath = `http://localhost:1923/${framework}/${file.path}`;
         const destPath = `${standardOutputDirectory}/${file.path}`;
 
         await downloadFile(sourcePath, destPath);
