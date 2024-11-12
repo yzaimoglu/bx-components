@@ -1,13 +1,17 @@
 {
-  "name": "bx-components",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "bx-components-mono",
+  "version": "0.0.1",
+  "author": "Yagizalp Zaimoglu",
+  "description": "Monorepo for BX-Components",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yzaimoglu/bx-components.git"
+  },
   "scripts": {
     "cli": "cd packages/cli && npm run build && npm run start",
     "registry": "cd packages/registry && npm run build && npm run start",
-    "vue": "cd packages/vue && npm run dev"
-  },
-  "author": "",
-  "license": "ISC",
-  "description": ""
+    "vue": "cd packages/vue && npm run dev",
+    "deploy": "cd packages/cli && npm run deploy"
+  }
 }

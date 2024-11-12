@@ -1,5 +1,5 @@
 {
-  "name": "bx-components",
+  "name": "bx-components-yz",
   "version": "1.0.0",
   "description": "Add components to your apps.",
   "publishConfig": {
@@ -22,7 +22,8 @@
     "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
     "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
     "test": "vitest run",
-    "test:dev": "vitest run"
+    "test:dev": "vitest run",
+    "deploy": "tsup && npm publish"
   },
   "dependencies": {
     "@antfu/ni": "^0.21.4",

@@ -1,0 +1,13 @@
+/packages/vue
+/packages/angular
+/packages/registry
+
+/src
+/node_modules
+
+.env
+.DS_Store
+
+Makefile
+tsconfig.json
+tsup.config.ts
