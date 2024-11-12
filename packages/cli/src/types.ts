@@ -19,3 +19,7 @@ export enum ComponentType {
   ui,
   hook
 }
+
+export interface Config {
+  api_key: string;
+}

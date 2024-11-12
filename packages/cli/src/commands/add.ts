@@ -1,8 +1,7 @@
 import inquirer from "inquirer";
 import { Command } from "commander";
-import { createComponent, downloadFile, fetchComponent } from "../utils";
-import { standardOutputDirectory } from "../const";
-import { File, Files } from "../types";
+import { createComponent } from "../utils";
+import { Files } from "../types";
 
 const FRAMEWORKS: FrameworkChoice[] = [
   {

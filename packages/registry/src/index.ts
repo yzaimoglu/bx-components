@@ -1,19 +1,18 @@
 import express, { Express, Request, Response } from 'express';
 import path from 'path';
-import { ApiResponse, Component } from './types';
+import { Component } from './types';
 import { getComponents, getSingleComponent } from './components';
+import { authMiddleware } from './middleware';
 
 const app: Express = express();
 const port: number = 1923;
 
 let components: Component[];
 
-app.get('/', async (_req: Request, res: Response) => {
-  const response: ApiResponse = {
-    components: components,
-  };
+app.use(authMiddleware);
 
-  res.json(response);
+app.get('/', async (_req: Request, res: Response) => {
+  res.json(components);
 });
 
 app.get('/:component', async (_req: Request, res: Response) => {
@@ -37,3 +36,5 @@ app.listen(port, async () => {
   components = await getComponents()
   console.log(`Registry running on port ${port}`);
 });
+
+

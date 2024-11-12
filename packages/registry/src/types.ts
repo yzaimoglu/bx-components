@@ -19,7 +19,3 @@ enum ComponentType {
   ui,
   hook
 }
-
-export interface ApiResponse {
-  components: Component[]
-}
