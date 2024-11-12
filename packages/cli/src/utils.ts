@@ -3,7 +3,8 @@ import { mkdir } from 'fs/promises';
 import { dirname } from 'path';
 import https from 'https';
 import http from 'http';
-import { Component } from './types';
+import { Component, Files, File } from './types';
+import { standardOutputDirectory } from './const';
 
 export async function downloadFile(url: string, outputPath: string): Promise<void> {
   try {
@@ -65,7 +66,7 @@ export async function downloadFile(url: string, outputPath: string): Promise<voi
 export async function fetchComponent(componentName: string, baseUrl: string = 'http://localhost:1923'): Promise<Component> {
   try {
     const response = await fetch(`${baseUrl}/${componentName}`);
-    
+
     if (!response.ok) {
       if (response.status === 404) {
         throw new Error(`Component "${componentName}" not found`);
@@ -80,5 +81,43 @@ export async function fetchComponent(componentName: string, baseUrl: string = 'h
       throw new Error(`Failed to fetch component "${componentName}": ${error.message}`);
     }
     throw new Error(`Unknown error while fetching component "${componentName}"`);
+  }
+}
+
+export async function createComponent(componentName: string, framework: keyof Files) {
+  try {
+    console.log(`Installing ${componentName}...`);
+    const component = await fetchComponent(componentName);
+
+    if(component.registryDependencies.length !== 0) {
+      console.log(`Installing dependencies...`)
+      for(const dependencyName of component.registryDependencies) {
+        createComponent(dependencyName, framework);
+      }
+      console.log(`Dependencies of ${componentName} installed.`)
+    }
+
+    if (!component.files || !(framework in component.files)) {
+      console.error(`No ${framework} files found for component ${componentName}`);
+    }
+
+    const files: File[] = component.files[framework as keyof Files];
+    for (const file of files) {
+      try {
+        const sourcePath = `https://raw.githubusercontent.com/yzaimoglu/bx-components/refs/heads/main/packages/${framework}/src/${file.path}`;
+        const destPath = `${standardOutputDirectory}/${file.path}`;
+
+        await downloadFile(sourcePath, destPath);
+        console.log(`Downloaded ${file.path}`);
+      } catch (error) {
+        console.error(`Failed to download ${file.path}:`, error);
+        process.exit(1);
+      }
+    }
+
+    console.log(`Successfully installed ${componentName} for ${framework}`);
+  } catch (error) {
+    console.error(`Failed to install ${componentName}:`, error instanceof Error ? error.message : String(error));
+    process.exit(1);
   }
 }

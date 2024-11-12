@@ -1,6 +1,6 @@
 import inquirer from "inquirer";
 import { Command } from "commander";
-import { downloadFile, fetchComponent } from "../utils";
+import { createComponent, downloadFile, fetchComponent } from "../utils";
 import { standardOutputDirectory } from "../const";
 import { File, Files } from "../types";
 
@@ -47,34 +47,7 @@ export const add = new Command()
         }])).framework as keyof Files;
 
       for (const componentName of components) {
-        try {
-          console.log(`Installing ${componentName}...`);
-          const component = await fetchComponent(componentName);
-
-          if (!component.files || !(framework in component.files)) {
-            console.error(`No ${framework} files found for component ${componentName}`);
-            continue;
-          }
-
-          const files: File[] = component.files[framework as keyof Files];
-          for (const file of files) {
-            try {
-              const sourcePath = `https://raw.githubusercontent.com/yzaimoglu/bx-components/refs/heads/main/packages/${framework}/src/${file.path}`;
-              const destPath = `${standardOutputDirectory}/${file.path}`;
-
-              await downloadFile(sourcePath, destPath);
-              console.log(`Downloaded ${file.path}`);
-            } catch (error) {
-              console.error(`Failed to download ${file.path}:`, error);
-              process.exit(1);
-            }
-          }
-
-          console.log(`Successfully installed ${componentName} for ${framework}`);
-        } catch (error) {
-          console.error(`Failed to install ${componentName}:`, error instanceof Error ? error.message : String(error));
-          process.exit(1);
-        }
+        createComponent(componentName, framework);
       }
     } catch (error) {
       console.error('Operation cancelled');

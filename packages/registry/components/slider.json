@@ -2,18 +2,16 @@
   "name": "slider",
   "type": "ui",
   "dependencies": [],
-  "registryDependencies": [
-    "button"
-  ],
+  "registryDependencies": [],
   "files": {
     "angular": [
       {
-        "path": "ui/slider.comp.ts"
+        "path": "components/ui/slider.comp.ts"
       }
     ],
     "vue": [
       {
-        "path": "ui/slider.vue"
+        "path": "components/ui/Slider.vue"
       }
     ]
   }
